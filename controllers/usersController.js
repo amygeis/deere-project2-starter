@@ -1,19 +1,38 @@
 const express = require("express");
 const Time = require("../models").Time;
-const Medicine = require("../models").Medicine
+const Medicine = require("../models").Medicine;
+const UserMed = require("../models").UserMed;
 const router = express.Router();
 
 const UserModel = require("../models").User;
 
 //GET USER MED SCHEDULE
 router.get("/schedule/:id", (req,res)=>{
-  UserModel.findByPk(req.params.id).then((user)=>{
+  UserModel.findByPk(req.params.id, {
+    include:[{
+      model: Medicine,
+      attributes:["id","name","dosage"]
+    },
+  {
+    model:Time,
+    attributes:["id","timeOfDay"] 
+  },
+  ]
+  }).then((user)=>{
     Medicine.findAll().then((allMeds)=>{
       Time.findAll().then((allTimes)=>{
-        res.render('users/userschedule.ejs',{
+        UserMed.findAll({
+          where: {
+            userId:req.params.id
+          }
+        }).then((allUserMeds)=>{
+          res.render('users/userschedule.ejs',{
           user:user,
           medicines:allMeds,
           times:allTimes,
+          userMeds:allUserMeds
+        })
+        
       })
     })
       
@@ -33,18 +52,19 @@ router.get("/profile/:id", (req, res) => {
 //ADD NEW USER MED TO SCHEDULE
 router.put("/schedule/:id", (req,res) => {
   console.log(req.body)
-  UserModel.Medicine.create({
+  UserMed.create({
     userId: req.params.id,
     timeId: req.body.time,
     medId: req.body.medicine,
     
   }).then(()=>{
-    res.redirect(`/users/schedule/${foundUser.id}`)
+    res.redirect(`/users/schedule/${req.params.id}`)
   })
     // Medicine.findByPk(req.body.medicine).then((foundMed)=>{
     //   Time.findByPk(req.body.time).then((foundTime)=>{
     //   UserModel.findByPk(req.params.id).then((foundUser)=>{
-    //     foundUser.addMedicine(foundMed, foundTime),
+    //     foundUser.addMedicine(foundMed),
+    //     foundUser.addTime(foundTime),
     //     res.redirect(`/users/schedule/${foundUser.id}`)
     //   })
     // })
@@ -52,14 +72,5 @@ router.put("/schedule/:id", (req,res) => {
   })
 
 
-//USER MED SCHEDULE SHOW/EDIT/DELETE PAGE
-router.get("/profile/schedule/:id", (req,res)=>{
-  UserModel.findByPk(req.params.id, {
-    include: [{model: Medicine}, {model: Time}],
-  }).then((user)=>{
-    Medicine.findAll().then((medicine)=>{
-  });
-});
-});
 
 module.exports = router;

@@ -33,18 +33,52 @@ Select new medicine and time of day:
     <div class="schedule">
         <div id="Morning">
             <h3>Morning</h3>
+                <% console.log(user.Medicines)
+                for(let i=0; i<userMeds.length; i++) { %>
+                <%if(userMeds[i].timeId == 1) {%>
+                    <li>
+                        <a href="/medicine/<%=userMeds[i].medId%>">test<%=userMeds[i].medId%></a>
+                        </li>
+                        <br />
+           <%}%>
+        <%}%>
 
         </div>
         <div id="Noon">
             <h3>Noon</h3>
+            <% for(let i=0; i<user.Medicines.length; i++) { %>
+                <%if(user.Medicines[i].UserMed.timeId == 2) {%>
+                    <li>
+                        <a href="/medicine/<%=user.Medicines[i].medId%>"><%=user.Medicines[i].name%>, <%=user.Medicines[i].dosage%></a>
+                        </li>
+                        <br />
+           <%}%>
+        <%}%>
+        
 
         </div>
         <div id="Evening">
             <h3>Evening</h3>
+            <% for(let i=0; i<user.Medicines.length; i++) { %>
+                <%if(user.Medicines[i].UserMed.timeId == 3) {%>
+                    <li>
+                        <a href="/medicine/<%=user.Medicines[i].medId%>"><%=user.Medicines[i].name%>, <%=user.Medicines[i].dosage%></a>
+                        </li>
+                        <br />
+           <%}%>
+        <%}%>
 
         </div>
         <div id="Bed Time">
             <h3>Bed Time</h3>
+            <% for(let i=0; i<user.Medicines.length; i++) { %>
+                <%if(user.Medicines[i].UserMed.timeId == 4) {%>
+                    <li>
+                        <a href="/medicine/<%=user.Medicines[i].medId%>"><%=user.Medicines[i].name%>, <%=user.Medicines[i].dosage%></a>
+                        </li>
+                        <br />
+           <%}%>
+        <%}%>
 
         </div>
 

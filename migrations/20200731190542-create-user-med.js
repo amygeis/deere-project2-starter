@@ -21,11 +21,16 @@ module.exports = {
       timeId: {
         type: Sequelize.INTEGER,
         unique: 'UserMedDayIndex',
+        // references:{
+        //   model:'Time',
+        //   key: 'id',
+        // },
         allowNull: false
       },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
+        defaultValue: new Date(),
       },
       updatedAt: {
         allowNull: false,
