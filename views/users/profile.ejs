@@ -17,7 +17,7 @@
       <br />
       <br />
       Password:
-      <input type="text" name="password" value="<%=user.password%>" /><br />
+      <input type="password" name="password" value="<%=user.password%>" /><br />
       <br />
       <input type="submit" value="Edit Profile" />
     </form>
@@ -27,6 +27,7 @@
     </form>
 
     <br /><br />
+    Go to <a href ="/users/schedule/<%=user.id %>">my schedule</a>
     <a href="/">Back to Homepage</a>
   </body>
 </html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedTrac</title>
+</head>
+<body>
+
+    <%- include('../partials/navbar') %>
+
+    <h1>Medication detail page</h1>
+    
+    <form action="/medicine/<%=medicine.id; %>?_method=DELETE" method="POST">
+    <input type="submit" value="Delete Medication"/>
+    <a href="/medicine/<%=medicine.id; %>/edit">Edit Medication</a>
+    </form>
+  
+    Medication name: <%=medicine.name%> <br/>
+    Medication dosage: <%=medicine.dosage%> <br/>
+    Picture: <br/>
+    Other Info: <br/>
+
+    <%- include('../partials/footer') %>
+   </form>
+</body>
+</html>

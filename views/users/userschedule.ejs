@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedTrac</title>
+</head>
+<body>
+    <%- include('../partials/navbar') %>
+<br/>
+<h1><%=user.name%>'s Medicine Schedule</h1>
+<form action="/users/schedule/<%=user.id%>?_method=PUT" method="POST">
+Select new medicine and time of day:  
+<select name="medicine">
+    <% for ( let i = 0; i < medicines.length; i++ ) { let selected = ( i == 0
+    ) ? "selected" : ""; %>
+    <option value="<%=medicines[i].id%>" selected
+      ><%=medicines[i].name%>,<%=medicines[i].dosage%>
+    </option>
+    <% } %>
+</select>   
+<select name="time">
+    <% for ( let i = 0; i < times.length; i++ ) { let selected = ( i == 0
+    ) ? "selected" : ""; %>
+    <option value="<%=times[i].id%>" selected
+      ><%=times[i].timeOfDay%>
+    </option>
+    <% } %>
+</select>   
+<input type="submit" name="" value="Add Medicine"/>
+</form>
+  
+    <div class="schedule">
+        <div id="Morning">
+            <h3>Morning</h3>
+
+        </div>
+        <div id="Noon">
+            <h3>Noon</h3>
+
+        </div>
+        <div id="Evening">
+            <h3>Evening</h3>
+
+        </div>
+        <div id="Bed Time">
+            <h3>Bed Time</h3>
+
+        </div>
+
+    </div>
+
+
+     <%- include('../partials/footer') %>
+</body>
+</html>

@@ -3,10 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>MedTrac</title>
 </head>
 <body>
-    <%- include('partials/navbar') %>
-    <%- include('partials/footer') %>
+   
+    <%- include('../partials/navbar') %>
+    <h1>
+        List of medications
+    </h1>
+    <br />
+    Don't see your medication?  <a href="medicine/new">Add a new one.</a>
+    <br />
+    <br />
+
+    <ul>
+        <% for (let i=0; i<medicines.length; i++){ %>
+            <li>
+                <a href="/medicine/<%=medicines[i].id%>"><%=medicines[i].name%>, <%=medicines[i].dosage%></a>
+            </li>
+            <br />
+        <% } %>
+    </ul>
+    <%- include('../partials/footer') %>
 </body>
 </html>
