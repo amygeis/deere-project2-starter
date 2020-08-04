@@ -19,6 +19,7 @@ router.get("/schedule/:id", (req,res)=>{
   },
   ]
   }).then((user)=>{
+    console.log(user)
     Medicine.findAll().then((allMeds)=>{
       Time.findAll().then((allTimes)=>{
         UserMed.findAll({
@@ -58,19 +59,21 @@ router.put("/schedule/:id", (req,res) => {
     medId: req.body.medicine,
     
   }).then(()=>{
-    res.redirect(`/users/schedule/${req.params.id}`)
-  })
-    // Medicine.findByPk(req.body.medicine).then((foundMed)=>{
-    //   Time.findByPk(req.body.time).then((foundTime)=>{
-    //   UserModel.findByPk(req.params.id).then((foundUser)=>{
-    //     foundUser.addMedicine(foundMed),
-    //     foundUser.addTime(foundTime),
-    //     res.redirect(`/users/schedule/${foundUser.id}`)
-    //   })
-    // })
-    // })
+      res.redirect(`/users/schedule/${req.params.id}`)
+    })
   })
 
-
+// delete route
+router.delete('/schedule/:id', (req,res) => {
+  let userMedId=req.params.id;
+  let userId = ""
+  UserMed.findByPk(userMedId).then((userMedRow)=>{
+    userId = userMedRow.userId;
+    return UserMed.destroy({where: {id: req.params.id}})
+  }).then(()=>{
+console.log(userId)
+  res.redirect(`/users/schedule/${userId}`)
+  })
+});
 
 module.exports = router;
