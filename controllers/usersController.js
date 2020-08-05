@@ -1,13 +1,25 @@
+require('dotenv').config();
+
 const express = require("express");
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const Time = require("../models").Time;
 const Medicine = require("../models").Medicine;
+const UserModel = require("../models").User;
 const UserMed = require("../models").UserMed;
 const router = express.Router();
 
-const UserModel = require("../models").User;
+const { render } = require('ejs');
+const { sequelize } = require('../models');
+
+module.exports = router;
 
 //GET USER MED SCHEDULE
 router.get("/schedule/:id", (req,res)=>{
+  console.log(req.user)
+  let username=req.user
+  console.log(username)
+  if (req.user.id == req.params.id) {
   UserModel.findByPk(req.params.id, {
     include:[{
       model: Medicine,
@@ -31,23 +43,63 @@ router.get("/schedule/:id", (req,res)=>{
           user:user,
           medicines:allMeds,
           times:allTimes,
-          userMeds:allUserMeds
+          userMeds:allUserMeds,
+          username:username,
         })
         
       })
     })
       
       });
-  });
+  })
+} else {
+    // res.json("unauthorized");
+    res.redirect("/");
+}
 });
+
+//GET LIST OF USER MEDICINES
+router.get("/list/:id", (req,res) =>{
+  username=req.user.username;
+  if (req.user.id == req.params.id){
+    UserMed.findAll({
+      where :{
+        userId:req.params.id
+      },
+      attributes : ['medId', [sequelize.fn('count', sequelize.col('medId')),'medCount']],
+      group: ['UserMeds.medId'],
+      raw: true,
+      order: sequelize.literal('medId')
+    }).then((allUserMeds)=>{
+      Medicine.findAll().then((allMeds)=>{
+        UserModel.findByPk(req.params.id).then((user)=>{
+          res.render('user/userlist.ejs',{
+          userMeds:allUserMeds,
+          medicines:allMeds,
+          user:user,
+        })
+      })
+      })  
+    })
+  }
+})
 
 // GET USERS PROFILE
 router.get("/profile/:id", (req, res) => {
+  console.log(req.user);
+  username = req.user.username;
+  console.log(username)
+  if (req.user.id == req.params.id) {
   UserModel.findByPk(req.params.id).then((userProfile) => {
     res.render("users/profile.ejs", {
       user: userProfile,
+      username: username,
     });
   });
+} else {
+  // res.json("unauthorized");
+  res.redirect("/");
+}
 });
 
 //ADD NEW USER MED TO SCHEDULE

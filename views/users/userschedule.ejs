@@ -4,18 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MedTrac</title>
+    <link rel="stylesheet" href="/css/app.css" />
 </head>
 <body>
     <%- include('../partials/navbar') %>
 <br/>
 <h1><%=user.name%>'s Medicine Schedule</h1>
 <form action="/users/schedule/<%=user.id%>?_method=PUT" method="POST">
-Select new medicine and time of day:  
+Select new medicine and time of day to add to your schedule:  
 <select name="medicine">
     <% for ( let i = 0; i < medicines.length; i++ ) { let selected = ( i == 0
     ) ? "selected" : ""; %>
     <option value="<%=medicines[i].id%>" selected
-      ><%=medicines[i].name%>,<%=medicines[i].dosage%>
+      ><%=medicines[i].name%>:<%=medicines[i].dosage%>
     </option>
     <% } %>
 </select>   
@@ -29,61 +30,81 @@ Select new medicine and time of day:
 </select>   
 <input type="submit" name="" value="Add Medicine"/>
 </form>
-  
+<br />
+<div class="new">
+Don't see your medication?  <a href="/medicine/new">Add a new one.</a>
+ </div> 
     <div class="schedule">
         <div id="Morning">
             <h3>Morning</h3>
-                <%for(let i=0; i<userMeds.length; i++) { %>
-    
-                    <%if(userMeds[i].timeId === 1) {%>
-                    <%let medid=userMeds[i].medId
-                    %>
-                    <li>
-                        <a href="/medicine/<%=userMeds[i].medId%>"><%=medicines.find(medicine=>medid===medicine.id).name%></a>
-                        </li>
-                        <form action="/users/schedule/<%=userMeds[i].id%>?_method=DELETE" method="POST">
-                <input type="submit" value="DELETE"/>
-                    </form>
-                        <br />
-           <%}%>
-        <%}%>
+            <%for(let i=0; i<userMeds.length; i++) { %>
+                <%if(userMeds[i].timeId === 1) {%>
+                <%let medid=userMeds[i].medId
+                %>
+                <form action="/users/schedule/<%=userMeds[i].id%>?_method=DELETE" method="POST">
+                <li>
+                    <a href="/medicine/<%=userMeds[i].medId%>">
+                        <%=medicines.find(medicine=>medid===medicine.id).name%>:<%=medicines.find(medicine=>medid===medicine.id).dosage%></a>
+                        <input type="submit" value="DELETE"/>
+                </li>
+                </form>
+                    <br />
+                <%}%>
+            <%}%>
 
         </div>
         <div id="Noon">
             <h3>Noon</h3>
-            <% for(let i=0; i<user.Medicines.length; i++) { %>
-                <%if(user.Medicines[i].UserMed.timeId === 2) {%>
-                    <li>
-                        <a href="/medicine/<%=user.Medicines[i].medId%>"><%=user.Medicines[i].name%>, <%=user.Medicines[i].dosage%></a>
-                        </li>
-                        <br />
-           <%}%>
-        <%}%>
-        
+            <%for(let i=0; i<userMeds.length; i++) { %>
+                <%if(userMeds[i].timeId === 2) {%>
+                <%let medid=userMeds[i].medId
+                %>
+                <form action="/users/schedule/<%=userMeds[i].id%>?_method=DELETE" method="POST">
+                <li>
+                    <a href="/medicine/<%=userMeds[i].medId%>">
+                        <%=medicines.find(medicine=>medid===medicine.id).name%>:<%=medicines.find(medicine=>medid===medicine.id).dosage%></a>
+                        <input type="submit" value="DELETE"/>
+                </li>
+                </form>
+                    <br />
+                <%}%>
+            <%}%>
 
         </div>
         <div id="Evening">
             <h3>Evening</h3>
-            <% for(let i=0; i<user.Medicines.length; i++) { %>
-                <%if(user.Medicines[i].UserMed.timeId === 3) {%>
-                    <li>
-                        <a href="/medicine/<%=user.Medicines[i].medId%>"><%=user.Medicines[i].name%>, <%=user.Medicines[i].dosage%></a>
-                        </li>
-                        <br />
-           <%}%>
-        <%}%>
+            <%for(let i=0; i<userMeds.length; i++) { %>
+                <%if(userMeds[i].timeId === 3) {%>
+                <%let medid=userMeds[i].medId
+                %>
+                <form action="/users/schedule/<%=userMeds[i].id%>?_method=DELETE" method="POST">
+                <li>
+                    <a href="/medicine/<%=userMeds[i].medId%>">
+                        <%=medicines.find(medicine=>medid===medicine.id).name%>:<%=medicines.find(medicine=>medid===medicine.id).dosage%></a>
+                        <input type="submit" value="DELETE"/>
+                </li>
+                </form>
+                    <br />
+                <%}%>
+            <%}%>
 
         </div>
         <div id="Bed Time">
             <h3>Bed Time</h3>
-            <% for(let i=0; i<user.Medicines.length; i++) { %>
-                <%if(user.Medicines[i].UserMed.timeId === 4) {%>
-                    <li>
-                        <a href="/medicine/<%=user.Medicines[i].medId%>"><%=user.Medicines[i].name%>, <%=user.Medicines[i].dosage%></a>
-                        </li>
-                        <br />
-           <%}%>
-        <%}%>
+            <%for(let i=0; i<userMeds.length; i++) { %>
+                <%if(userMeds[i].timeId === 4) {%>
+                <%let medid=userMeds[i].medId
+                %>
+                <form action="/users/schedule/<%=userMeds[i].id%>?_method=DELETE" method="POST">
+                <li>
+                    <a href="/medicine/<%=userMeds[i].medId%>">
+                        <%=medicines.find(medicine=>medid===medicine.id).name%>:<%=medicines.find(medicine=>medid===medicine.id).dosage%></a>
+                        <input type="submit" value="DELETE"/>
+                </li>
+                </form>
+                    <br />
+                <%}%>
+            <%}%>
 
         </div>
 

@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   UserMed.init({
-    id: {type: DataTypes.INTEGER, primaryKey:true},
+    id: {type: DataTypes.INTEGER, primaryKey:true,autoIncrement: true},
     userId: DataTypes.INTEGER,
     medId: DataTypes.INTEGER,
     timeId: DataTypes.INTEGER

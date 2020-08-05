@@ -3,10 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/app.css" />
     <title>User Profile Page</title>
   </head>
 
   <body>
+    <%- include('../partials/navbar') %>
     <h1>Welcome to <%= user.name %>'s Profile Page</h1>
 
     <form action="/users/profile/<%=user.id%>?_method=PUT" method="POST">
@@ -27,7 +29,10 @@
     </form>
 
     <br /><br />
-    Go to <a href ="/users/schedule/<%=user.id %>">my schedule</a>
+    <a href ="/users/schedule/<%=user.id %>">My Schedule</a>
+    <a href ="/users/list/<%=user.id%>">My List of Medications</a>
+    <br />
     <a href="/">Back to Homepage</a>
+    <%- include('../partials/footer') %>
   </body>
 </html>
