@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/css/app.css" />
 </head>
 <body>
+    <%- include('../partials/header') %>
     <%- include('../partials/navbar') %>
 <br/>
 <h1><%=user.name%>'s Medicine Schedule</h1>
@@ -62,7 +63,7 @@ Don't see your medication?  <a href="/medicine/new">Add a new one.</a>
                 <form action="/users/schedule/<%=userMeds[i].id%>?_method=DELETE" method="POST">
                 <li>
                     <a href="/medicine/<%=userMeds[i].medId%>">
-                        <%=medicines.find(medicine=>medid===medicine.id).name%>:<%=medicines.find(medicine=>medid===medicine.id).dosage%></a>
+                        <%=medicines.find(medicine=>medid===medicine.id).name%> : <%=medicines.find(medicine=>medid===medicine.id).dosage%></a>
                         <input type="submit" value="DELETE"/>
                 </li>
                 </form>

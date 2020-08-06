@@ -7,12 +7,20 @@
     <link rel="stylesheet" href="/css/app.css" />
 </head>
 <body>
+    <%- include('../partials/header') %>
     <%- include('../partials/navbar') %>
 
     <h1>List of medications for <%=user.name%></h1>
-
+<%console.log(userMeds)%>
     <ul>
-        
+        <%for (let i=0; i< userMeds.length; i++) { %>
+            <li>  
+                <a href="/medicine/<%=userMeds[i].medId%>">
+                    <%=medicines.find(medicine=>userMeds[i].medId===medicine.id).name%>
+                     : <%=medicines.find(medicine=>userMeds[i].medId===medicine.id).dosage%></a>
+                    , <%=userMeds[i].medCount%> X per day
+            </li>
+       <%}%>
     </ul>
 
      <%- include('../partials/footer') %>

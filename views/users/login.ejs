@@ -7,8 +7,9 @@
   </head>
 
   <body>
+    <%- include('../partials/header') %>
     <h1>Login</h1>
-
+    <article>
     <form action="/auth/login" method="POST">
       Username: <input type="text" name="username" /> <br />
       <br />
@@ -16,5 +17,6 @@
       <br />
       <input type="submit" value="Login" />
     </form>
+    <%- include('../partials/footer') %>
   </body>
 </html>

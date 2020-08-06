@@ -12,7 +12,6 @@ const router = express.Router();
 const { render } = require('ejs');
 const { sequelize } = require('../models');
 
-module.exports = router;
 
 //GET USER MED SCHEDULE
 router.get("/schedule/:id", (req,res)=>{
@@ -67,13 +66,14 @@ router.get("/list/:id", (req,res) =>{
         userId:req.params.id
       },
       attributes : ['medId', [sequelize.fn('count', sequelize.col('medId')),'medCount']],
-      group: ['UserMeds.medId'],
+      group: ['UserMed.medId'],
       raw: true,
-      order: sequelize.literal('medId')
+      order: ['medId']
     }).then((allUserMeds)=>{
+      console.log(allUserMeds)
       Medicine.findAll().then((allMeds)=>{
         UserModel.findByPk(req.params.id).then((user)=>{
-          res.render('user/userlist.ejs',{
+          res.render('users/userlist.ejs',{
           userMeds:allUserMeds,
           medicines:allMeds,
           user:user,

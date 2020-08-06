@@ -1,0 +1,28 @@
+body {
+    color: black;
+    /* background-color:  rgb(248, 197, 168); */
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-image: url("/../../images/pillimage50.jpg"); 
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+}
+
+
+header{
+    text-align: center;
+}
+
+nav{
+    /* background-color: rgb(248, 197, 168); */
+     text-align: right;
+}
+
+footer {
+    text-align: center;
+    vertical-align: bottom;
+}
