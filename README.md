@@ -7,15 +7,15 @@ Application to track medications for each person along with when medications sho
 
 ## Project Links
 
-- ![github repo](https://github.com/amygeis/deere-project2-starter)
-- ![deployment](https://medtrac.herokuapp.com/)
+- ![github repo](https://github.com/amygeis/deere-project2-starter "GitHub Repo")
+- ![deployment](https://medtrac.herokuapp.com/ "Heroku Application")
 
 ## Wireframes
 
 Upload images of wireframe to cloudinary and add the link here with a description of the specific wireframe.
 
-- ![wireframes](Wireframe.pdf)
-- ![DB architecture](database.pdf)
+- ![wireframes](Wireframe.pdf "WireFrame")
+- ![DB architecture](database.pdf "DB architecture")
 
 
 
