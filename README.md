@@ -7,15 +7,15 @@ Application to track medications for each person along with when medications sho
 
 ## Project Links
 
-- [github repo]()
-- [deployment]()
+- ![github repo](https://github.com/amygeis/deere-project2-starter)
+- ![deployment](https://medtrac.herokuapp.com/)
 
 ## Wireframes
 
 Upload images of wireframe to cloudinary and add the link here with a description of the specific wireframe.
 
-- [wireframes]()
-- [react architecture]()
+- ![wireframes](Wireframe.pdf)
+- ![DB architecture](database.pdf)
 
 
 
@@ -25,7 +25,7 @@ Define the the React components and the architectural design of your app.
 
 The functionality will then be divided into two separate lists: MPV and PostMVP.  Carefully decided what is placed into your MVP as the client will expect this functionality to be implemented upon project completion.  
 
-#### MVP EXAMPLE
+#### MVP
 - As a user I would like a list of my medications so I know what I am taking and how much.
 - As a user I would like to know when to take medications so that I am taking medication at the right times of day.
 - As a user I do not want other people to access my list of medications for privacy.
@@ -35,47 +35,49 @@ The functionality will then be divided into two separate lists: MPV and PostMVP.
 - As a user I would like to be automatically signed out after 30 min in case I forget to log out.
 - As a user I would like the ability to log out of the application.
 
-#### PostMVP EXAMPLE
+#### PostMVP
 
-- Add localStorage or firebase for storage
+- As a user I would like to connect to an API to get medication names
+- As a user I would like a picture of the medication so that I know what my medication looks like
 
 ## Components
-##### Writing out your components and its descriptions isn't a required part of the proposal but can be helpful.
 
-Based on the initial logic defined in the previous sections try and breakdown the logic further into stateless/stateful components. 
 
-| Component | Description | 
-| --- | :---: |  
-| App | This will make the initial data pull and include React Router| 
-| Header | This will render the header include the nav | 
-| Footer | This will render the header include the nav | 
-
-## Time Frames
-
-Time frames are also key in the development cycle.  You have limited time to code all phases of the game.  Your estimates can then be used to evalute game possibilities based on time needed and the actual time you have before game must be submitted. It's always best to pad the time by a few hours so that you account for the unknown so add and additional hour or two to each component to play it safe. Also, put a gif at the top of your Readme before you pitch, and you'll get a panda prize.
-
-| Component | Priority | Estimated Time | Time Invetsted | Actual Time |
-| --- | :---: |  :---: | :---: | :---: |
-| Adding Form | H | 3hrs| 3.5hrs | 3.5hrs |
-| Working with API | H | 3hrs| 2.5hrs | 2.5hrs |
-| Total | H | 6hrs| 5hrs | 5hrs |
-
-## Additional Libraries
- Use this section to list all supporting libraries and thier role in the project such as Axios, ReactStrap, D3, etc. 
 
 ## Code Snippet
 
-Use this section to include a brief code snippet of functionality that you are proud of an a brief description.  Code snippet should not be greater than 10 lines of code. 
+I had to do some interesting things because of a triple table join to get the medication name when sorting throught the medication list for a user.
 
 ```
-function reverse(string) {
-	// here is the code to reverse a string of text
-}
+<a href="/medicine/<%=userMeds[i].medId%>">
+                        <%=medicines.find(medicine=>medid===medicine.id).name%>:<%=medicines.find(medicine=>medid===medicine.id).dosage%></a>
+                        <input type="submit" value="DELETE"/>
 ```
 
 ## Issues and Resolutions
- Use this section to list of all major issues encountered and their resolution.
+- Trying to get a count of medications per user per day
 
-#### SAMPLE.....
-**ERROR**: app.js:34 Uncaught SyntaxError: Unexpected identifier                                
-**RESOLUTION**: Missing comma after first object in sources {} object
+**ERROR**: UnhandledPromiseRejectionWarning: SequelizeDatabaseError: column "medid" does not exist                            
+**RESOLUTION**: 
+```
+changed order: sequelize.literal('medId')
+to: order: ['medId']
+```
+
+- Trying to insert data into a table with triple joins
+
+**ERROR**: data not inserting into table                          
+**RESOLUTION**: 
+```
+//ADD NEW USER MED TO SCHEDULE
+router.put("/schedule/:id", (req,res) => {
+  console.log(req.body)
+  UserMed.create({
+    userId: req.params.id,
+    timeId: req.body.time,
+    medId: req.body.medicine,  
+  }).then(()=>{
+      res.redirect(`/users/schedule/${req.params.id}`)
+    })
+  })
+  ```
