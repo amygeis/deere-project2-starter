@@ -38,6 +38,13 @@ nav{
     align-items: stretch;
 
 }
+.signup{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: stretch;
+}
+
 .medlist{
     grid-row:3;
     grid-column:1;
