@@ -9,9 +9,9 @@
 <body>
     <%- include('../partials/header') %>
     <%- include('../partials/navbar') %>
-
+<div class="medlist">
     <h1>List of medications for <%=user.name%></h1>
-<%console.log(userMeds)%>
+
     <ul>
         <%for (let i=0; i< userMeds.length; i++) { %>
             <li>  
@@ -22,7 +22,7 @@
             </li>
        <%}%>
     </ul>
-
+</div>
      <%- include('../partials/footer') %>
 </body>
 </html>

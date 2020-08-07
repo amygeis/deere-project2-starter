@@ -1,11 +1,19 @@
-<div class="navbar">
+
     <nav>
+        <div>
+            <a href="/medicine">Medicines</a>
+        </div>
+        <div>
+            <a href ="/users/schedule/<%=user.id %>">My Schedule</a>
+        </div>
+        <div>
+            <a href ="/users/list/<%=user.id%>">My List of Medications</a>
+        </div>
+        <div>
+            Welcome <%=username%>
+            <br/>
+            <a href="/auth/logout">Log Out</a>
+        </div>
         
-        Welcome <%=username%>
-        <br/>
-        <a href="/auth/logout">Log Out</a>
-        <!-- <img src = "/../../images/peachpills.jpg" /> -->
     </nav>
-    
-    </div>
     

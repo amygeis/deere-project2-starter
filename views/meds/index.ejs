@@ -9,11 +9,12 @@
 <body>
     <%- include('../partials/header') %>
     <%- include('../partials/navbar') %>
+    <div class="medlist">
     <h1>
         List of medications
     </h1>
     <br />
-    Don't see your medication?  <a href="medicine/new">Add a new one.</a>
+    Don't see your medication?  <a href="/medicine/new">Add a new one.</a>
     <br />
     <br />
 
@@ -25,6 +26,7 @@
             <br />
         <% } %>
     </ul>
+    </div>
     <%- include('../partials/footer') %>
 </body>
 </html>

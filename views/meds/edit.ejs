@@ -9,6 +9,7 @@
 <body>  
     <%- include('../partials/header') %>
     <%- include('../partials/navbar') %>
+    <div class="medlist">
    <h1>Edit Medication</h1>
    <form action="/medicine/<%=medicine.id%>?_method=PUT" method="POST">
     Name: <input type="text" name="name" value="<%=medicine.name%>"/><br/>
@@ -16,7 +17,7 @@
     <input type="submit" name="" value="Submit Changes"/>
         </form>
   
-
+    </div>
     <%- include('../partials/footer') %>
 </body>
 </html>

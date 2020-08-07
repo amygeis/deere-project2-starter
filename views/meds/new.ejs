@@ -10,14 +10,15 @@
    
     <%- include('../partials/header') %>
     <%- include('../partials/navbar') %>
-
+<div class="medlist">
     <h1>Add new Medication</h1>
    <form action="/medicine" method="POST">
         Medication Name: <input type="text" name="name" /><br>
         Dosage: <input type="text" name="dosage" /><br>
         <input type="submit" name="" value="Add Medication" />
-
+    </form>
+</div>
     <%- include('../partials/footer') %>
-   </form>
+   
 </body>
 </html>

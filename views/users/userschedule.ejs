@@ -10,6 +10,7 @@
     <%- include('../partials/header') %>
     <%- include('../partials/navbar') %>
 <br/>
+<div class="newschedule">
 <h1><%=user.name%>'s Medicine Schedule</h1>
 <form action="/users/schedule/<%=user.id%>?_method=PUT" method="POST">
 Select new medicine and time of day to add to your schedule:  
@@ -35,6 +36,7 @@ Select new medicine and time of day to add to your schedule:
 <div class="new">
 Don't see your medication?  <a href="/medicine/new">Add a new one.</a>
  </div> 
+ <br />
     <div class="schedule">
         <div id="Morning">
             <h3>Morning</h3>
@@ -110,7 +112,7 @@ Don't see your medication?  <a href="/medicine/new">Add a new one.</a>
         </div>
 
     </div>
-
+</div>
 
      <%- include('../partials/footer') %>
 </body>

@@ -9,19 +9,24 @@
 <body>
     <%- include('../partials/header') %>
     <%- include('../partials/navbar') %>
-
+<div class="medlist">
     <h1>Medication detail page</h1>
     
     <form action="/medicine/<%=medicine.id; %>?_method=DELETE" method="POST">
-    <input type="submit" value="Delete Medication"/>
-    <a href="/medicine/<%=medicine.id; %>/edit">Edit Medication</a>
+        <a href="/medicine/<%=medicine.id; %>/edit">Edit Medication</a>
+        <br />
+        <input type="submit" value="Delete Medication"/>
     </form>
+    <br />
   
-    Medication name: <%=medicine.name%> <br/>
-    Medication dosage: <%=medicine.dosage%> <br/>
-    Picture: <br/>
-    Other Info: <br/>
-
+    <b>Medication name:</b> <%=medicine.name%> <br/>
+    <br />
+    <b>Medication dosage:</b> <%=medicine.dosage%> <br/>
+    <br />
+    <b>Picture:</b> coming soon<br/>
+    <br />
+    <b>Other Info:</b> coming soon<br/>
+</div>
     <%- include('../partials/footer') %>
 </body>
 </html>

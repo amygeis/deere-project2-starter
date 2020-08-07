@@ -1,13 +1,18 @@
 const express = require("express");
 const router = express.Router();
-
 const Medicine = require("../models").Medicine;
 const Time = require("../models").Time;
 const User=require("../models").User;
 
+
 // NEW MEDICINE ROUTE
 router.get('/new', (req, res) => {
-    res.render('meds/new.ejs');
+    User.findByPk(req.user.id).then((user)=>{
+        res.render('meds/new.ejs', {
+            user:user,
+        });
+    })
+    
 });
 
 //POST for new/create
@@ -19,9 +24,16 @@ router.post('/', (req,res) => {
 
 // MEDICINE INDEX ROUTE
 router.get("/", (req, res) => {
-    Medicine.findAll().then((medicines) =>{
-        res.render("meds/index.ejs", {
+    username=req.user.username;
+    Medicine.findAll({
+        order: ['name']
+    }).then((medicines) =>{
+        User.findByPk(req.user.id).then((user)=>{
+            res.render("meds/index.ejs", {
       medicines: medicines,
+      user:user,
+        })
+        
         });
     });
   });
@@ -29,21 +41,28 @@ router.get("/", (req, res) => {
 //SHOW ROUTE
 
 router.get('/:id', (req, res) => {
+    username=req.user.username;
     Medicine.findByPk(req.params.id).then((medicine) => {
-    res.render("meds/show.ejs", {
+        User.findByPk(req.user.id).then((user)=>{
+            res.render("meds/show.ejs", {
         medicine: medicine,
+        user:user,
+        })    
         });
     });
 });
 
 //edit route
 router.get('/:id/edit', (req, res) => {
+    username=req.user.username
     console.log(req.params.id)
     Medicine.findByPk(req.params.id).then((medicine) => {
-            res.render(
-		'meds/edit.ejs', //render views/edit.ejs
-		{ //pass in an object that contains
+        User.findByPk(req.user.id).then((user)=>{
+            res.render('meds/edit.ejs', {
             medicine: medicine, 
+            user:user,
+        })
+            
             });
         });
     });

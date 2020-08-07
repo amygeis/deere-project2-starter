@@ -15,9 +15,7 @@ const { sequelize } = require('../models');
 
 //GET USER MED SCHEDULE
 router.get("/schedule/:id", (req,res)=>{
-  console.log(req.user)
-  let username=req.user
-  console.log(username)
+  username=req.user.username;
   if (req.user.id == req.params.id) {
   UserModel.findByPk(req.params.id, {
     include:[{
